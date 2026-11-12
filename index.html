@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Concours – Léa & Léo</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0b10;--fg:#f4f4f8;--mut:#9a9aab;--pink:#ff4f93;--blue:#3d8bff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
+#island{align-self:center;margin:10px 0 8px;background:#000;border:1px solid #2a2a35;border-radius:40px;padding:8px 10px 8px 22px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 30px #000a;flex:none}
+#gt{font-size:clamp(26px,5vw,42px);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:1px}
+#island button{width:38px;height:38px;border-radius:50%;border:0;background:#22222c;color:var(--fg);font-size:16px;cursor:pointer}
+#island #go{width:auto;padding:0 16px;border-radius:20px;background:#fff;color:#000;font-weight:700}
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 10px;min-height:0}
+.side{--c:var(--pink);border:2px solid var(--c);border-radius:22px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 22%,#0b0b10),#0b0b10 70%);display:flex;flex-direction:column;padding:14px;min-width:0;min-height:0}
+.side.leo{--c:var(--blue)}
+.head{display:flex;justify-content:space-between;align-items:center;color:var(--c);font-weight:800;font-size:clamp(18px,3vw,28px);letter-spacing:2px}
+.head small{color:var(--mut);font-weight:600;font-size:14px;letter-spacing:0}
+.title{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(16px,2.6vw,26px);font-weight:600;line-height:1.25;padding:8px 4px;overflow:auto}
+.note{background:color-mix(in srgb,var(--c) 28%,transparent);border:1px solid var(--c);border-radius:12px;padding:8px 10px;text-align:center;font-size:clamp(13px,1.8vw,18px);margin-bottom:8px}
+.note:empty{display:none}
+.time{text-align:center;font-size:clamp(54px,13vw,150px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.time.low{color:#ff5a5a}
+.bar{height:10px;background:#ffffff18;border-radius:6px;margin:12px 0;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c);width:0}
+.ctl{display:flex;justify-content:center;gap:10px;margin-bottom:10px}
+.ctl button{flex:1;max-width:90px;height:52px;border-radius:14px;border:1px solid var(--c);background:#00000055;color:var(--fg);font-size:22px;cursor:pointer}
+.ctl button.p{background:var(--c);color:#000}
+.next{background:#00000088;border:1px dashed var(--c);border-radius:14px;padding:10px 12px;font-size:clamp(12px,1.6vw,16px);color:var(--mut)}
+.next b{color:var(--c);display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+@media (max-width:560px){main{gap:6px;padding:0 6px 6px}.side{padding:8px;border-radius:16px}.ctl button{height:44px;font-size:18px}}
+</style>
+</head>
+<body>
+<div id="island"><span id="gt">2:30:00</span><button id="go">▶ Lancer</button><button id="gp" title="Pause compteur général">⏯</button><button id="gr" title="Tout remettre à zéro">↺</button></div>
+<main>
+<section class="side lea" id="lea"></section>
+<section class="side leo" id="leo"></section>
+</main>
+<script>
+const RAW={
+lea:[
+["Tailler le lard (cubes pour farce fine, brunoise pour saucière, lanières)",8490,""],
+["Réaliser la farce fine et passer au tamis",8220,""],
+["Réaliser les ballotines",7800,"Cuisson : 85 °C – 12 min"],
+["Sorbet Ratafia + éplucher les poires pour mettre à infuser + cylindres de poire marinés dans le ratafia, miel et jus sudachi, gingembre",7200,"Cuisson farce fine"],
+["Mixer le boudin noir cuit vapeur pour le bonbon",6900,"Lancer huile verte – cuisson 70 °C – 10 min"],
+["Rouler les bandes de lard",6450,""],
+["Terminer le sorbet avec le Stab 2000, le miel et le sucre et ajouter le Ratafia en fin de préparation",6120,"47 g DE MIEL"],
+["Réaliser le parfait au miel + mettre à infuser le miel et le pollen dans 70 g de crème",5400,""],
+["Brunoise de courge + 35 copeaux pickles (emporte-pièce n°2) et mettre en pickles",4380,""],
+["Blanchir les épinards",4170,""],
+["Larder les carrés de cochon",3750,""],
+["Monter les bonbons",3150,""],
+["Montage des baklavas",2730,""],
+["Praliné de courge + turbiner le sorbet 20’",2280,""],
+["Mettre en chauffe la purée + réaliser les gratons",1980,""],
+["Démouler les baklavas",1710,""],
+["Cuisson brunoise de courge",1500,""],
+["Monter les tartelettes et finir les bonbons",1110,""],
+["Dresser les bonbons",870,""],
+["Dressage + envoi",0,"Poste : réorganiser, nettoyer, préparer le dessert · Mixer parures de poire (pectine) · Détailler le parfait miel en tubes · Terminer la pectine · Détailler la gelée Ratafia en cubes"]],
+leo:[
+["Habiller le carré de cochon de lait (aponévreuse) + fumer aux herbes. Garder 50 g de chair du filet pour la farce fine. Détailler en cubes les os pour les parures + poitrine + pied",8520,"Vin rouge à réduire (miroir) · fondre le beurre · appareil à pickles"],
+["Lancer le jus en cuisson (colorer les carcasses, dégraisser le beurre, ajouter la GA, flamber cognac, singer, mouiller à hauteur)",8220,"Contrôler le jus + fumage carré"],
+["Courge bleue : rôtir au four pour purée avec aromates, beurre + huile",7740,""],
+["Pâte sablée marjolaine : étaler entre papier sulfurisé, mettre en cellule, détailler en forme de quenelle",7050,"Courge bleue (purée et sphères) 150 °C · tuile dessert 150 °C 9 min · tuile plat 9 min · tartelettes 150 °C 12 min"],
+["Réaliser les 2 appareils à tuile et étaler sur moule graissé · tartelettes bricks (emporte-pièce n°9) entre les deux moules beurrés",6840,""],
+["Réaliser l’huile de tagète",6660,"Sablé : 160 °C – 18 min"],
+["Duxelle de girolles + concasser les noisettes, zester le citron",5520,""],
+["Jus de passion",5340,""],
+["Gel Ratafia : 50 g ratafia + 1 feuille gélatine",4800,""],
+["Purée de courge : mixer au beurre, jus passion, sel, piment d’espelette",4380,""],
+["Eau de courge, passer au chinois · réduire le jus · kappa avec 1,5 g et 100 g de jus",3870,""],
+["Eau de courge réduite et kappa",3750,"Mettre pépins de courge à torréfier"],
+["Mettre le poste baklava en place",3150,""],
+["Montage des baklavas",2670,"Cuisson baklava : 150 °C – ventil 3 – 14 min"],
+["Marquer le carré en cuisson",2160,"Cuisson du carré : 9 min – 59 °C à cœur"],
+["Sphériser à la kappa la purée de courge + pickles de courge à enrouler",1770,""],
+["Manchonner le carré et enlever la couenne",1500,""],
+["Badigeonner de moutarde et plaquer la brunoise",960,""],
+["Dressage + envoi",0,"Poste : réorganiser, nettoyer, préparer le dessert · Monter la crème pollen · Étaler le sorbet · Démouler le parfait miel · Mettre en poche miel, condiment poire, crème montée"]]
+};
+const fmt=(s,h)=>{s=Math.max(0,Math.ceil(s));const H=Math.floor(s/3600),M=Math.floor(s%3600/60),S=s%60;return (h||H?H+":"+String(M).padStart(2,"0"):M)+":"+String(S).padStart(2,"0")};
+let ac;function beep(){try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type="sine";o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.2,t);g.gain.setValueAtTime(.2,t+3.8);g.gain.linearRampToValueAtTime(0,t+4);for(let i=0;i<8;i++)o.frequency.setValueAtTime(i%2?660:880,t+i*.5);o.start(t);o.stop(t+4)}catch(e){}}
+function fit(t){t.style.fontSize="";const s=t.firstChild;let f=parseFloat(getComputedStyle(t).fontSize);while(s.offsetHeight>t.clientHeight+1&&f>10){f-=1;t.style.fontSize=f+"px"}}
+const G={rem:9000,run:false};
+const S={};
+for(const k of["lea","leo"]){let s=9000;const t=RAW[k].map(([x,e,n])=>{const o={t:x,n,d:s-e};s=e;return o});S[k]={t,i:0,rem:t[0].d,run:false,el:document.getElementById(k),name:k==="lea"?"LÉA":"LÉO"}}
+function draw(k){const p=S[k],c=p.t[p.i],nx=p.t[p.i+1],el=p.el;
+if(!el.dataset.ok){el.dataset.ok=1;el.innerHTML=`<div class="head"><span>${p.name}</span><small></small></div><div class="title"></div><div class="note"></div><div class="time"></div><div class="bar"><i></i></div><div class="ctl"><button data-a="prev" title="Objectif précédent">⏮</button><button data-a="play" class="p"></button><button data-a="rst" title="Recommencer cette étape">↺</button><button data-a="next" title="Objectif suivant">⏭</button></div><div class="next"></div>`;
+el.onclick=e=>{const a=e.target.closest("button")?.dataset.a;if(a)act(k,a)}}
+const q=s=>el.querySelector(s);
+q("small").textContent=`Étape ${p.i+1}/${p.t.length}`;
+if(el.dataset.k!==String(p.i)){el.dataset.k=p.i;const T=q(".title");T.innerHTML="<span></span>";T.firstChild.textContent=c.t;fit(T)}
+q(".note").textContent=c.n;
+const tm=q(".time");tm.textContent=fmt(p.rem);tm.classList.toggle("low",p.rem<=10&&c.d>0);
+q(".bar i").style.width=(c.d?100*(1-p.rem/c.d):100)+"%";
+q('[data-a="play"]').textContent=p.run?"⏸":"▶";
+q(".next").innerHTML=nx?`<b>Étape suivante · ${fmt(nx.d)}</b>${nx.t}`:`<b>Dernière étape</b>Fin du concours`}
+function act(k,a){const p=S[k];
+if(a==="play")p.run=!p.run;
+if(a==="rst")p.rem=p.t[p.i].d;
+if(a==="next"&&p.i<p.t.length-1){p.i++;p.rem=p.t[p.i].d}
+if(a==="prev"&&p.i>0){p.i--;p.rem=p.t[p.i].d}
+draw(k)}
+let last=Date.now();
+setInterval(()=>{const n=Date.now(),dt=(n-last)/1000;last=n;
+if(G.run){G.rem=Math.max(0,G.rem-dt);if(!G.rem)G.run=false}
+document.getElementById("gt").textContent=fmt(G.rem,1);
+for(const k in S){const p=S[k];if(p.run){p.rem-=dt;let ch=0;
+while(p.rem<=0&&p.i<p.t.length-1){p.i++;p.rem+=p.t[p.i].d;ch=1}
+if(p.rem<=0){p.rem=0;p.run=false;ch=1}
+if(ch)beep()}
+draw(k)}},200);
+document.getElementById("go").onclick=()=>{try{ac=ac||new AudioContext()}catch(e){}G.run=true;for(const k in S)S[k].run=true;try{navigator.wakeLock&&navigator.wakeLock.request("screen")}catch(e){}};
+document.getElementById("gp").onclick=()=>{G.run=!G.run};
+document.getElementById("gr").onclick=()=>{G.rem=9000;G.run=false;for(const k in S){const p=S[k];p.i=0;p.rem=p.t[0].d;p.run=false}};
+for(const k in S)draw(k);
+addEventListener("resize",()=>{for(const k in S){S[k].el.dataset.k="";draw(k)}});
+</script>
+</body>
+</html>
