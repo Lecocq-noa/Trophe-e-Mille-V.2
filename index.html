@@ -7,34 +7,69 @@
 <style>
 :root{color-scheme:dark;--bg:#0b0b10;--fg:#f4f4f8;--mut:#9a9aab;--pink:#ff4f93;--blue:#3d8bff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
-html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--fg);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
-#island{align-self:center;margin:10px 0 8px;background:#000;border:1px solid #2a2a35;border-radius:40px;padding:8px 10px 8px 22px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 30px #000a;flex:none}
-#gt{font-size:clamp(26px,5vw,42px);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:1px}
-#island button{width:38px;height:38px;border-radius:50%;border:0;background:#22222c;color:var(--fg);font-size:16px;cursor:pointer}
-#island #go{width:auto;padding:0 16px;border-radius:20px;background:#fff;color:#000;font-weight:700}
-main{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 10px;min-height:0}
-.side{--c:var(--pink);border:2px solid var(--c);border-radius:22px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 22%,#0b0b10),#0b0b10 70%);display:flex;flex-direction:column;padding:14px;min-width:0;min-height:0}
+html,body{height:100%;margin:0;overflow:hidden}
+body{height:100dvh;background:var(--bg);color:var(--fg);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
+#island{align-self:center;margin:6px 0 6px;background:#000;border:1px solid #2a2a35;border-radius:60px;padding:8px 12px 8px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 30px #000a;flex:none}
+#bar{--big:48px;flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;padding:0 14px}
+#ttl{display:flex;align-items:center;gap:.3em;justify-self:start;font-size:var(--big);font-weight:800;color:#fff;white-space:nowrap}
+#ttl img{height:1.15em;width:auto;flex:none}
+#dt{justify-self:end;font-size:var(--big);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+#gt{font-size:var(--big);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:1px}
+#island button{width:min(64px,8vh);height:min(64px,8vh);min-width:40px;min-height:40px;border-radius:50%;border:0;background:#22222c;color:var(--fg);font-size:22px;cursor:pointer}
+#island #go{width:auto;padding:0 22px;border-radius:32px;background:#fff;color:#000;font-weight:700;font-size:20px}
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px max(10px,env(safe-area-inset-bottom,0px));min-height:0;overflow:hidden}
+.side{--c:var(--pink);border:2px solid var(--c);border-radius:22px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 22%,#0b0b10),#0b0b10 70%);display:flex;flex-direction:column;padding:10px 14px;min-width:0;min-height:0;overflow:hidden}
 .side.leo{--c:var(--blue)}
 .head{display:flex;justify-content:space-between;align-items:center;color:var(--c);font-weight:800;font-size:clamp(18px,3vw,28px);letter-spacing:2px}
 .head small{color:var(--mut);font-weight:600;font-size:14px;letter-spacing:0}
-.title{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(16px,2.6vw,26px);font-weight:600;line-height:1.25;padding:8px 4px;overflow:auto}
-.note{background:color-mix(in srgb,var(--c) 28%,transparent);border:1px solid var(--c);border-radius:12px;padding:8px 10px;text-align:center;font-size:clamp(13px,1.8vw,18px);margin-bottom:8px}
+.title{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(16px,2.6vw,26px);font-weight:600;line-height:1.25;padding:8px 4px;overflow:auto}
+.note{background:color-mix(in srgb,var(--c) 28%,transparent);border:1px solid var(--c);border-radius:12px;padding:6px 10px;text-align:center;font-size:clamp(12px,min(1.8vw,2.4vh),18px);margin-bottom:6px;max-height:17vh;overflow:hidden;flex:none}
 .note:empty{display:none}
-.time{text-align:center;font-size:clamp(54px,13vw,150px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.time{flex:none;text-align:center;font-size:clamp(44px,min(13vw,17vh),150px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
 .time.low{color:#ff5a5a}
-.bar{height:10px;background:#ffffff18;border-radius:6px;margin:12px 0;overflow:hidden}
+.bar{flex:none;height:8px;background:#ffffff18;border-radius:6px;margin:8px 0;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--c);width:0}
-.ctl{display:flex;justify-content:center;gap:10px;margin-bottom:10px}
-.ctl button{flex:1;max-width:90px;height:52px;border-radius:14px;border:1px solid var(--c);background:#00000055;color:var(--fg);font-size:22px;cursor:pointer}
+.ctl{flex:none;display:flex;justify-content:center;gap:10px;margin-bottom:8px}
+.ctl button{flex:1;max-width:90px;height:min(52px,7vh);min-height:38px;border-radius:14px;border:1px solid var(--c);background:#00000055;color:var(--fg);font-size:22px;cursor:pointer}
 .ctl button.p{background:var(--c);color:#000}
-.next{background:#00000088;border:1px dashed var(--c);border-radius:14px;padding:10px 12px;font-size:clamp(12px,1.6vw,16px);color:var(--mut)}
-.next b{color:var(--c);display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
-@media (max-width:560px){main{gap:6px;padding:0 6px 6px}.side{padding:8px;border-radius:16px}.ctl button{height:44px;font-size:18px}}
+.next{background:#00000088;border:1px dashed var(--c);border-radius:14px;flex:none;max-height:22vh;overflow:hidden;padding:10px 16px;font-size:clamp(14px,min(3.2vw,3.6vh),32px);line-height:1.2;color:var(--mut)}
+.next b{color:var(--c);display:block;font-size:0.7em;letter-spacing:2px;text-transform:uppercase}
+@media (max-width:700px){#bar{grid-template-columns:1fr 1fr}#island{grid-column:1/-1;order:3;justify-self:center}}
+@media (max-width:560px){#island{padding:8px 10px 8px 20px;gap:10px}#island button{width:44px;height:44px;font-size:18px}.next{padding:10px;font-size:15px}.next b{font-size:12px}main{gap:6px;padding:0 6px 6px}.side{padding:8px;border-radius:16px}.ctl button{height:44px;font-size:18px}}
 </style>
 </head>
 <body>
-<div id="island"><span id="gt">2:30:00</span><button id="go">▶ Lancer</button><button id="gp" title="Pause compteur général">⏯</button><button id="gr" title="Tout remettre à zéro">↺</button></div>
+<div id="bar"><div id="ttl"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOoAAADICAYAAADm8H1zAAArB0lEQVR42u2debRnVXXn9z7DnX73vqEoQAuoCIoIKME4JBpHxAhqRKMmylDghAgyiDIPryBQILMMCqgIiqLFinZrgklWEtKddLSNdmxjOkuiXRFDF4+qesOdh3PO7j+4t3L5WVXU9KrecL5r1fo9+D2o3+/e+zl7OPvsjWBlZTXvRESIiEREo2maXmSviJXV/IOUERGuW7fOi+P4M2mapvaqWFnNM0vagspmZ2fPK8uyTtN0g70yVlbzC1IEAEiS5KSyLKfKsjRJkqxn9vJYWc0fISIlSXIMIq5hjI3XdQ2IyCyoVlbzxJoiIsVx/LuI+ADnfGVZloZzjgBAFlQrq70PKWshfRFj7B7XdQ/UWhvG/tOQWlCtrPY+pCbLshUAc
+LvrukeWZUnDbFpQraz2srv7y1/+clxrfZ3v+2+u69ps6XeFvVxWVnsH0vbVT9P0QiHESUopbYxhiIgWVCurvWxBu1cAgCRJTgeAc4wxzBhDW4LUgmpltQfVwdm9pmm6CgCuYIwFWmuDiFsNRW2MamW1F1SW5fEAcJ0QYpkxZpuQAgBwe8msrPZoXMoeeeSRV2qtb/U879C6rmlbkLaecGZdXyurPQMpQ0RTVdURZVneMBgMji6KYqsxqXV9raz2PKQcEQ0RjdV1fW0Yhq+rqkptL6QWVCurOdbExARDRN1uw3w6CIITyrJUxpgdCjut62tltetx5+ZM7vB7rSV10jRd7fv+6WVZamMM3xFrakG1stpFbQnQIVj9NE3PQMSz6roGrTVjjOGO/j3W9bWymiNLyxijLMvewzm/XAgx0FrTzkBqQbWymiNIEZHyPH8jEV0hhFjWNA3tqLtrQbWymjtIGSLS1NTUUU3T3Ob7/qFVVZldgdSCa
+mW1+yE109PTzxNCfCaKoqOqqmqerepoe2STSVZWO+HWbg3SqamplY7jfC4IgjdkWdYQkdxFY2otqpXVjmprWd52G2ZUSnmFlPK4NE0NEYndAam1qFZWu8fKcgBw0jS9iDG2qmkaeprd3USptahWVrslLtV5nn+Qc34eY8wxxsDuhNSCamW16/GqybLsBCK6mjHmK6Vod0NqQbWy2gk4uz+ISDMzM8caY+5yXXdZ0zRmLiC1oFpZ7aDaZBIiIs3Ozr5KCHFnEAQHlGWpd8c2zNZkk0lWVjtmUTki6iRJjgSAmz3POyzPc4OIc9qEwVpUK6utuLhbiUn17OzsPkR0hed5ryqKwgAAzvXnsRbVymorLm6/uKH7eePGjSOc80sYY+9tSwP3iLGzFtXKatvxaL/Np+c4znmMsY8DABLtuZEwFlQrq224vt3rT3/6UyfLso8j4sWI6GqtYY4SvNb1tbLaUWva/ZwkybsZY5dyzv26rveYy2stq
+pXVs1tV3p4rfR3nfMJxnPG9AakF1cpq65AyRNRpmr5Ua32P4zjdNsxeYcaCamW1hbgUEU1RFC8AgFsdx3lRnufPmFdqQbWy2stxKSJSlmUHGGM+57ru65um0XsTUguqldWWLWpARBcIIY6tqsrAPBj9YkG1supB+sQTTwRJknwKAM5SStF8YcSCamX1dAkgMsYoiqKThRAXSimFMWbefEC7j2q16C3ltppkExE+/PDDDBH11NTUCa7rrgaAYG9tw2xrJbGyWrLwdj8XRXGsEOJLxpgDq6oyezt5tBlQRCCiSev6Wi2Z+LP38D+j6qiqqhcrpe7mnB9YVZXinM87LiyoVksa3rIsD2+a5rOe5z0/TVPNGBNEBBZUK6s97z7SEKQMESmO432VUlc6jvPasiyJMcbn63ewoFotKa1du5YDPL0NAwBXcM7f17b3nNeyoFotxViVBoPBJ13X/TgRmblo77nbvQJ7+6yWGKSYpunZnuddZ4yRd
+V2z+bQNswW33WZ9rZZWnMoYozRN/wgArtFa+1VV4XyG1Lq+VkvSmsZxfCwiTkgpw7quzXxOHllQrZYapBwRKU3T3wKA66WUhzVNM28KGiyoVkveinaHv7MsO9AYc73neS9rJ38vuOfegmq1KLV69Wp8mlfaxxhzZxRFby7L0izU72OzvlaL0poiIm3YsCHyPO9613XPUEoZrTWf79swvwaozfpaLVYhIk1OToau657PGPuIUgqUUgsOUuv6Wi06Czr8GobhiYyx8xBRaq2BMbagvUcLqtWCB3S4ljfP87cDwCVCiLF2XumCf84tqFYLOg4d/ucsy15hjLnBcZznNU1DC92SWlCtFnwcOmxZq6o6Smv9Gc/zXlSWJS3kmHRYthWL1aKwrLOzsy9kjN0YBMGr2qHCfDF9T2tRrRY8pEmS7IeIF0spf6+qKr0np6xZUK2stgJnH1Ii4oyx8x3HOVUpZYwxbDG5vLsM6pYmMltZ7Qk4uxh17
+dq1PM/zM4wx5xpjWPv+onwuxfZeqOEU+PBEZiuruVIfzh64mKbpmYh4jRDCa7dhFq3xEK0/j9sBa/ejsZBa7ckYdOjfMQCgoij+EBGvZoyNNE0DixlSAACBiGZXLqAF1mquLWnfiiKiSdP0eCK6QUo51jSNWQwFDc8Kap7nr1dKHcE5R6315jc456C13vza/jvdNM2PEPGHNk612sNiiKg3btx4OBGtCYLgoKIoFt02zLZc39Mcx1nVntPbDF7b8Gnz69NcEnLOp9I0/XRZlvciYty5Iztjma2sttOD64YKPxcRb/d9/+iiKBoAkEtmlSIih3POGGOcc8628YcjInMcZzkA3BgEwf1JkryRiAQiGiLi9pGy2t2amJhg7fM1zhj7TBAEx+Z5rohILqXrgGmafkVKeXJd19udNSMiGgwGWBTFpNb6DiK6e3R0dFMLq7Exq9XO5Du28TsjSZLcEUXRqiRJFlwblV2M058+j7ozUCEipmlqO
+Of7c86vYYw9mGXZ7yCibjPCtpDCanufJdpSrqNtpYKPPfaYm6bpha7rrsqybElBOuz67tQXZ4yxuq7JGENhGB7HOX84SZLziUi2ropNNFltN6zDkLb2AFasWPF+ADhHa21gCVfSsV1xU7sjRGmaKgA40HXdG7Is+1KSJC+Bdm/WAmu1vS5wx20Lr5mamnoHAFwrpYy01kv6OdrlFQqflqjr2jRNwx3HOQkRv5ll2aonnngi6FwbC6zV9ljVLmZN0/Ro13XX+L6/QimlF3tBw5yD2neFjTFU1zVIKV9ARHePjIzcumnTplcjItnY1erZPKxum29qauoozvldnucdkee5BoAlv6OwW8HpVr2maYAx5oZheHoQBA+laXrKo48+2m3jMGtdreUcBre1pGZ6evpgx3Fu9jzv1VmWLZmChj0K6tANgHYw7ErO+Z0ve9nLborj+EWIaPqZPgvt0rSow/2O2jYqK4QQV3DOj223YSykcw1qe/F5X
+dcaAEY8zzuXMXZ/HMfvIaKgf4MstEvPog6dhAEiigDgTM75yVprWqrbMHsF1A5WpZSp69pIKX9bCHFflmXXxXF8xBYyfbZQYgnFp13iqN0r/SARnYOI0i7YewHUFkBGRKyua2KMRYyxcxhj9yVJ8i4icvuxq71JSyM+7XtR+++//4mMsYl2G8Ys8QTv3gO1vUmAiNg0DWmtyff93+ac3xPH8VVlWR7axa7dzbPALgVukZIkOcFxnGscxxlvmkaDbQ+0d0Ht3x1ExCzLiDG23HGci5RSn02S5E1E5PRWXQvq4nWBGSKaOI5fJ4S4xXGcFUVR2G2Y+QTq5r+YMVRKkVLKeJ53LGPsS1mWXTwzM3NICyttaVSBTTwtvFh0C4u1SZLkxYh4ned5B6dpqjnnFtL5CGrPurKiKLQQ4iBEvIxzfn+SJMd0rtFwQ6vhrKHV/I5FtwRwlmUHAsD1QohXZ1mmOee81+rHar6B2ruxvK5rAwCO53mvJ
+aL7siy7LMuyFcNpfKuFa2W7e2mMuVZK+TatNdmChgUEagsrM8ZQWZYkhPgN13WvJqIHsyx7WbdK26qmhQloe88YEYk4ju8PgmBV0zRk7+UCBLXnCqPWmqqqAs/z3khE306S5BNENN62e0FbM7zwvGEAgNnZ2cs456vKsuzCF3tlFiKofWABAPI8JyHEisFgcEuapvfHcfzadhvHWFgX1DOGs7OzH/Z9/5OcczLGEFpKFz6omz8cY9g0jcnzXHue9w4p5YNJkvwxEUV9WK0LNa/jUp3n+bsGg8G1ABDWdQ1Lob3nkgK1i10BgJdlqTjnKznnlydJ8q0kSY7cUudDu30zLwDtxktQWZaHGWPuIKJ9qqoynHML6WIEtQesKMvSGGNoMBi8CREfTdP0Q+17v9YM3G7f7PX7RbOzs4cppb7jed5zyrI0dhtmCYDausKMiCDPc+M4zr4A8IU4jr+6cePGw9euXcttZnjPu7ZbcXdNlmUHIuJnf
+N8/tCxL6u6d1RIAtV2pERFZVVUEAOD7/olBEDx83HHHfXhycjK0meG96/ICAGRZtqLdK31LURQ2cbQUQe0DCwBQFIVxHOdIxtgtQRDcHMfxEQDQlSBaWOfYvR2yrgQAoTHmHM75ScYYslZ0iYPad4eLojCIGARBcDoifi3LslUAYNuW7nkXGNM0PU0IcUa7Hw7WmlpQ+ys7M8ZQnufa9/3fZIzdliTJTXmeH2STSnsmRkVEyvP8XYi4GgBG275ZFlIL6hZjV95O+BqTUp5tjPl6HMfvmZycDPsPl7Wyuw/O7nV2dvatRHSzlHJZ0zTGtlKxoD4bsFwpRVprcBzn1YyxzwdBcEUcx4f3tm9wGFgL707HpRDH8es45592HOc36rq2kFpQt9+6AgDUdQ2c8zHO+YWMsTvTNP3DbuTG8He3LvIOW1bWdmh4CQBMSClfXFUV2aojC+pOSWsNWmvyPO8YxtgdSZJcu2nTpoMQUVtLukuQmjzPf
+0NrfY3neccopex8XAvqrlvYoig053xfx3EucF33/jRN3wLt7B0L647FqIhoHnvsMbdpmgvDMHyHUkoZY9BmeC2ouyV2bZrGKKWMlPIYxthXsiy7vH84HWyfpu2BlNatW+etWLHiAt/3P1TXtVZKcQupBXV3wsqICOu6NpzzfRHxSgD4Qmtd22fRZoW3BSkAwPLly89ijE00TeMqpZjdhrGgzokbjIisrmsCAOY4zvEAsDZN00s2btx4QC8rzCycz1i0kIhYmqYfYIxdiYjCGGMspBbUOQeWiKAsS+KcjzDG1oRheH+SJMf0DqfzpWxdu2Zy3YCvLMuOR8QbhRAjSil7rnQPSiz1C9CVuhGR9n3/WGPMEUmSXB+G4QOIGLencZbs9g0RcURU7T70NVLKfeq6toX21qLuNWB5kiSac76CMXZrkiTfyPP89cPT5xari9t/7dQeHdRxHB+OiPe7rnt00zTGQmot6t5dtRjjdV0bRGRRFB2XZ
+dmRSZLcqrW+HxGnh0cFLiYXd/h7tXulempqaiVj7M7BYPDKNE0VItpnxlrUefHQMiKCtjH0QY7j3CiE+GaWZS/vTU7HxW5h25ET+zqOc3sQBMdkWabAjpywoM63uBUAuFKKmqbhQRC8gYi+nCTJ+x5//HF/sTYF7xagdjESAHBREAQnZFlmAEBYl9eCOp+BhSzLQAhxuOd5D+2zzz53tI3VOlgX3TUkIp6m6ZmMsfOKorDZXQvqggEWmqahqqqM53kfAoAvpWn6AQAYHT6cvtCs7NDnZYhIRVG8GxEnGGO2GZkFdUFaV5bnuXYc5xVCiFvSNL29KIoX9JMwCy3R1C/wQESdpulxWusbhRDLlFKWUgvqggWW13WtAWBMSnmKMebP8zw/iYj8hRq3tvvEZnZ29tUAcLPv+yuVUtpWHVlQFwOs1DQNua77/Hb63HWTk5PPWSiJpt7eaefuPl8IcW0QBEeUZWkzvBbURXLhGMP2+JxhjDmMs
+XMHg8FX4zg+gYj8+biN0y9s6Hogd+dKlVI3+L7/hizLNNj9dQvqIrSurH84nXP+xTRNV3ex63ytaur2SoloVCn1ScbYO/I8J/tMWFAXO7Cddd1HCHGh1vreOI7ftX79+kFnvYYt29b+eQ4/4zOSQ0888USQZdnZnPMPIKJoY1Ubl1pQF791VUqRUsp4nvdGxtjnwjC8tJvturUSxLnKFG/J9e5iUkSkKIpOBoALOeeh7cFrQV1ylhURWVEUWkq5PyJekKbpg0mSvKG73nsidu3i0C11s5+YmGBJkvwR53y1lDJqC+3tzbOgLklguwJ/6bruWxljX0+S5NINGzas6ACamJiYs4FWW7HSiIh0/vnnH4eI1zuO89ymabStPFoAz1OWZV8RQpxszxjOmWUjAAAhBLaHrb+jtb57dHT0kfZ93nVE3F1WdCvvsfbw9ysZY/dIKY9um5XbbZj5veADEU3alXTPuMLdHBbwff/3pZRfSpJk9fT09
+BgiaiISu8OybinD3Cu0N0S0HwDc4nmehdS6vlbbUp7nmjG2XxAEE0KIh+I4fi0iqs7qDcWTv/bzjlrU3hZRkKbp/b7v/26SJIYxZiG1oFptK3Ztmsbkea4Hg8FxQRB8fXZ29hMA4LYd/LdqHbcF6JYg7RU4+FmWfTUMw+OzLNN2qLAF1Wr7YGWIyPM8bwBghZTypizLvp5l2Su3ZEWfbftmS+/3qo/cPM8v8zzvnXmeK+vuWlCtdlwyz3MDT7ctPYGI/iKO40uIyNnRmuEtbMN07T0/SkTnV1VljDEWUguq1U7dAMaY1pqqqiIp5RhjbE1RFA/OzMy8fGcOp7eQckQ0U1NT7xFCXC2E8I0xtqDBgmq1i64wIiLWdQ1EZDzPe6/rug8mSXIiPH2Y2+xIkQQiqg0bNrw8iqI1UsrRuq7tXqkF1Wo3AguIyNI01VLKwxhjX0iS5DNlWR7BGKOtJYuGXeCZmZlXjI2N3cc5f36e55pzbl1eC
+6rVHLjD3eR03/f9s5RSD8dxfNLk5GS4PUkmIcQfCSFekmUZ2XYqFlSrubWuXClFVVVpz/OOAIA7fd+/tiiKA7cUt/YBllJ+OY7jTzPGplzXBWplr6oF1WpuLCsSESvLsgnDcIwx9rKqqsQwoC20m0F1XfcnIyMjEwBwSlVV/yiEQCklEpG2V9WCajU3IsdxZJqmPzPGXDw+Pr6uKwmEtsi+G2o1MTHBeha5CsPwu1rrk7TWtyqlngrDkBORISI7HXyBybbcmM+EEoHjOKyqqg1EdNnIyMjfDyWQ6PHHH/eXL1++7/T09MYDDjggH65QGh0d/TciujjLsr/O83yNEOKotv2prfW1FtVqN0BKQgjQWk8R0cTMzMwjRIT97C8RifHx8XcaYx4cGxu7JM/zlf1CiV5pYR2G4Z8ZY05USt1jjNno+z63ltWCarWLkCIiGmOMUuq2KIq+sHLlyqItCdz8e1mWvRkRrw6C4LWIeKHW+t4kSd7YH
+p3bPPipAzaKon9pmuYirfUnyrL8gRCCMcbAJposqFY7AWkblwIR3RFF0S2I2PTbewIA1HX9SkS8Rkr5gjzPFQA4Usq3MMa+mmXZpb/4xS9Gey4wAgBMTEywZcuWzX73u999qK7r07XWd2itjeu62Pu7reah7MHxeRaTImIzGAxklmVry7L8yPLly+OJiQl21VVXme7wd5qmzyWizzuO87buvnWQtdldUEr9qTHmU6Ojoz/rXOHNN70F+Ic//KE87LDD3gkA10gpX9j+dzZ2nU+AtgfHLajzS9rzPF4UxfellKd6nvdYBycRMcaYMcY8J03T64QQpxljOiuIw26z67pQVdXjRHQ7ADwYRdHk1pqrJUnyEkS8WEr5TgAI2kkAzD4P8wdU6/rOExljSAjBi6L4OWPs7CFIsS2yH4vj+Cop5WnGGDLGPAPS9sYiAEBZlkZKuRIAbkDEu+I4fk3vEPkzDqhHUfTPg8HgjKqqPlXX9WODwYC3I
+bJ1hW2MatWX4ziolIoR8azBYPDDIUhp/fr1A8bYhZ7nnUZE+tnaeyIiq6qqs67vFkLcPzs7u5qIgvb/y3vJJoaIycjIyOcYYyfmef6g53lcCIE2brWgWrWuKmMMtNYVAJwYhuFftllb0wdpMBic6rru+VprqZTC7Rng1FY2QVmWWgjxfMdxrkzT9OF2vqvuGWFDRKz9e340Ozv70aIoziGi1Pd9tCWIFtQl7+62J9xAa31uGIZ/1lpQ3U8AZVl2PGPsKiJylVK0I0fW2v8/r6pKG2PA9/23IuJ34zj+GBF5ANABSN26ccABB+RRFN2RZdnriqL48zAMkXNugbWgLk1LyjnXnudR0zR3RlH0haGGZgwRKc/z1yDi7Y7jLFdKEWNsp+4ZInJjDBRFQZzzg6SUn83z/M4kSY7sJZiwf/Z1v/32+6cwDN9eluW1QoiYc94BawslLKhLxt3VruuKPM+/EkXR5Z0VbV1djoimqqqXENHdjuMcU
+lXVLndo6A6oK6VIaw2+738IEb85MzNz5szMTDd2gw3Frtr3/curqjpBa/0dY0zteR4DAGWtqwV1sUNqPM8TRVF8h3N+GSLODo1C1ET0/Kqq7nEc58iiKGh37pR0wKdpSlLKFwohbhNC3P7kk08e1cXGXTKrc8GjKPrbMAw/CACXKaV+5fu+aL+Ota4W1MUpx3F4mqZ/JYQ4ZzAY/Efn5nbbME888cTyNE1vCcPwVVVVqZ30dp/95jOG3dgNIcTJy5cvfyhN01O6Ezk9sLsFZGMYhjcR0fvzPP8WY4xJKZmF1YK66Kyp53lYFMW/MMY+6fv+vw9vw/z4xz8eRFF0qe/7by2Komm3Ueas8AARmTGGmqZRjLEjHMe5M0mSNTMzM4cM/d7mzHAQBP8jDMPTtNYXaa0nXdfthl9ZV9iCuvAhdRwHq6p6jIgujKLoJ333sqsWOuSQQz7huu45VVVxY4zYE9VBbegq0jTVRDTCOb9ECPGNJElOn
+pycDPtfAwDo0UcfFYgYP/bYY7cqpT5c1/V/RURwHMfWDM/VPbIlhHMvYwxJKVEptR4RLxkMBg/2B0N1fXhnZ2ffJ4S4n3Mu220Y3BuflTGGrutCWZYlEX0WAL44MjLyr8P8dYtLnucrlVKnIeJHpJQHaq3BGGNrhnfPImpLCPfQg2+klKC1niGiawaDwcNDkDJEpKIo3i+l/CLnXO7NocJdIUVZlsQY8zzPO18I8WCapicDgOy2cfr/TRAEj0dRdD0Rvb9pmm9yzpXjONy2frGu74Jxd4UQ1J75vDuKoi8iYt47soaIaJIkeaMxZg3n3FNKzQu3sU1BQ9tc7aUAcHue59cWRfH8tvULDH2PemRk5O/DMDxDKfXHSqnHPc/jYLdxLKjzHVLGGHHOeVmW94RheCMiVp0FnZiYYIhIaZr+FhHdIKVcqZSad5O/EZFnWaY552NCiE9prb86Ozv7ju579FxgbL/ThsFgcB0RfaQsy78cDAaiq
+2qyT4WNUeclq47jYFEUf8I5/3gYhk8OZ3jzPF+ptb7b9/3jq6pSc53h3Q2xqxkMBjxN0/VEdI/jON9wXfex/nfqH6XbtGnTQVLKczjnH3Rdd1lRFAAA9jmzMeq8sabGcRwsy/JRxtjqDlL4z+OiFMfxvlrrq13XPb6tw523kHaxKxGxLMu0EOK5jLErlVJfSJLkhG6o1fBM13322edXURRNKKU+kOf5X3ueB+2JHLvval3fvbv6GWO053msqqp/A4CJKIp+2r7XPw0TMsaudF331LquyRjDF4KVaT8j7w4GuK77uwBwV57nV0xPTx/cnXf9zxCXEBHz0dHRb9d1fVpVVXdqrad832cAoC2wFtS9Iq21cRyHtxnei0dGRv5uKOFC7VDhcwHgrKZpes//glqQuuNzIIR4rud5l0spv5ym6XHdojR8OH358uX/MRgMPskYe3tVVd8bDAa8HahsM8MW1D3r7rquS5zzJM/z80ZGRr7ZPaw9W
+EVZlqcQ0WXdWdFF4EFQnufG87zXMMYejON4Is/zg7oG4f3YFRHrIAi+R0TvTtP0AQDI2qbgFlYL6p5JtAghgIgoy7Lrli1b9kCbGHoGiXmev11rfYkQwtdaL5YsKCIia4da7SOlXG2M+fLs7Ozb28QR9WElIhaG4fowDD+qlDqnLMsfCSF4u5DZzLAFdU4TLV3rk8+Pjo7e0iWO+vFamqZvMMascRzneVprvdgyn+1QK6O1Jsdx3uB53gNpml5DRPv0m6l1bjEi1qOjo/c1TXOK1voeIiLXde3hdAvq3Lm8QRBg0zR/MTIycjkiVkMPpCmK4hDG2FWDweDwuq4VACzK0jpEZG2RhAGAZUKIS7Ms+36e569r36de9huICEdGRv51amrqE4yxE5qm+d+e56HNDFtQdzekOgxDlmXZz5VSH0PEqeHOgXmerySiu4IgeG3bKHtRz/tpC/xZXdektQbP815gjPmzJEk+uXHjxpHe8bnNSbaVK
+1cWg8HgO4yxPyiKYi0AVK7rMjvQyoK6WyD1fZ83TfPLpmnePT4+vq6zpD3rsY9S6kbf949L09TAEhrK1bn2eZ4TIoae590UhuE3six7ee+86zMGWvm+/3+ffPLJVcaYc+q6/jfHcZgQwmaGLag7nTwyUkpORL+qquq0ZcuW/aS/DQMAEMfx8izLrmCMvTdN0x1qSLbI4vfNnRBd1z0OANbGcXxxmqbP7TyP3uKHhx56aD0YDO5FxPdXVfU1IppxHIcbY4wF1WqHIPV9nxHRU2manhtF0d92Q5n682EYYx8GgDMREWzJ3NPJpjRNleM4BwshrgGAB/I8f1V/+lzvZz4YDH4URdGZTdOc2zTNP0dRxNpyOguq1bNz6roua5ombprm0vHx8W/1ehxtrnFNkuRdAPCJ7sia1WZYRVEUxhjDPM97szHmq1mWnU1EI/1tHADoEnGzo6OjXwaA0/I8/5oxpmyHZy25zLAFdftjUuCcs6ZpGqXUd
+VEUPdC91QvLaHp6+g8453cKIfbTWuvtaZS9xFxh1rrChnN+MCLemuf55+I4PmJoJs5mDyUMw//11FNPfYhz/lGl1M89z8PWpTYWVKtnQMoYI2OMNsbcE0XR3Yioehv5HBHN9PT0m1zXvd513ec0TaNhkW7D7KZEE1NKkTGG+75/IiI+GMfxR4ho/+EhVkSEBx98cBkEwZebpjmpLMuHiajoZYbJgmoFjDHddgK8P4qiNYg407m5nes7MzPzCtd1b/M879C2SsdCun3AQpZl4LruSxljn8nz/Obp6emj+wOt+vH/2NjYD8Iw/BgRXVzX9b87jsM457jYk00W1GdPHpGUkjdN811EvBoR1/dX+jZzeQBj7DrP816cpqlhjFlIdwxYqKrKMMZ8x3FOEkLcMzMzczoRLeufde1d801RFN1R1/WpSqlvGGNy3/eZMWbRJgSEfUy2CakJgoAVRfEPAHBBEASPDx/+JqIgy7KbXNd9U9sJgdsKu
+J2ClWmtqZ2A/koiOjxN09+enZ39NCI+1vu9/uH0/z4zM/NTIcRfKaWuiKJoZZZlZjEaIGtRtx6XGt/3WVVV6wDgypGRkf+zBUi9NE1XM8be1zQNIaKFdBdd4d5Aq4hz/kEhxENpmp66fv36wRbuERsbG5sKw/ALZVl+oCzLbwMAE0JszkZZUBc5pI7jsLquNxDRRBiGfzdc0EBEIkmS8xhj57bW11643Qcsb5qGjDEgpfwtIvp8FEU3lWV5eGdVoTfQCgBwfHz8b7TWZxhjzlJKPSWlhMU00MqC+uuQghCCNU2Taa0nBoPB1xGxbh+QzXWqSZJ8SAhxEefc0Vobuw2zmx/M9npWVUWcc+k4zhla67VxHH9o3bp1Y90w5tazAQCAMAzXR1F0d9M071dK/Skiqm6glQV18T0gxhjTGGNu2LRp05cQsRka4ER5np/gOM4VUsqxdnaLvY5z6A4bY6CqKuM4zosZY59btmzZTZOTky9oC0346
+tWrsff7Znx8/G+SJPlw0zQTxpj/57quICJtjFmwrrDtQjjk8kopWVVVny/L8vz9998/HepQQFmW/Q4RfcV13RcURWHYXE1wstri/Wl7NYFS6sdt4cnaLiQZLkdERNi0adPrpZSfGgwGby/LErTWC2phtV0Ih9TV8LbnSq/pQ9rFRVmWHWiMuaGFlCyke/yhZUREbYH/0UKIz8dxfEdRFAcPHU4nImLGGFy2bNl/C8NwVZZl1xljMs/z2ELMMdkH7ekVWA8GA1aW5fcB4EJEfHx4oz3P85XGmHullK9t9/xsTLqXXOG2wF8DwMhgMPi41vq/zM7OnkJEg/Z+MmhLO9s4djoMw8uNMadUVfU/wzDsLNWCSQwzmMe9ZPcUpEEQ8LIsf6aUOrc/Za2DdWZmZlwpdZ3jOMcrpewCNz9yCbxpGiqKwkgpj+Kc31sUxU1pmj6nHbnRzcgxbQd/MzIy8i3G2HuzLLuDiErP89oQeP7Hrphl2f1Ci
+FOXYoza24ZZj4gfDsPwkd5q3KX/R9M0vUEIcbrWmojIHlubf/eRGGPo+z6UZflPWusbwzD8er/1Swvt5mZrcRwfzxi7zPf9VzdNA03T6PlYUbY5RtVab2ibc9ESu7kgpWRN0yRSyo+3kIreFgwREU+S5KNSylVd8beFdH66w0QEWZaRlPKlYRh+LU3Ta5Ik2W94cnr38+jo6CNhGB5bFMXdAJB2bUvnqy/MOOf/3jRNDU/3YF1KKzAZYwoAuMbzvK4HryYiXL16ddc58D2u634SEd12FKJ1eec5sGVZmqIolO/7lyLig23bUtbvJoGItHbtWo6IxU033XRWXddnVlX1Iykln6/H5zCO49cxxh7gnD9Pa70o6ySHIQUAkFJiXde3RVF0MQDUw6n9mZmZ3+Oc3+e67gFFURDn3FrSBXSPEdG4rsubpplUSt3BGPviYDCY7FvVrqoJEc3s7OwLOefnIuKprusOiqLowp/54fpKKR8HgF9IK
+QGGGkYvRncXAMxgMMC6rtdGUXQdIla95tDdAKfXcM7vcl33gKqqjIV0QbrCvCxLzTnfXwixmogezrLsbRMTE930AtYPcUZHRx8bDAYXKaXOrKrqUcYYSinnTWYYiShI0/Ry13UvrqrKLNZzlO3h7yYIApll2beJ6PQoiiaHMrwmSZIjAeArvu+/tCgKW3W08O+74ZwzIQTUdZ0ZY9YAwL0jIyMb+43V+jFsnucHEdF5xpgzHcfxmqbZXGyx1ywqIuaI+PdlWa53HIcDwKI804eI2vM8mWXZPzDGzm4h5V3I2sL6HABY47ruS4uiIAvporjvTGtNbc3wQAhxrRDiy1NTU6/vTZ/ru8IQBMGvgiC4DAA+UNf1DzjnIKXcq21LGQCAUup7nPO/RERtjFl0bl47wIkXRfHPiHhO71yp7mKU6enpsTiOV3PO366UskdhFpkrjIiotQattfZ9/3jf9x9KkuScLMtW9GDt1wyXURR9XUq5qmma+
+4hoqjNke8MXZkSEY2Nj04h4b1mWvwyCYFE1PCYicF2XlWX5K0S8YjAY/Kh/rhQAaN26dZ4Q4gLP8z4IANCOhrFx6eKElidJojnnz2WMXW+M+WySJMcAAB/uMzwxMcE8z/uZMeaCuq4vaJrm+57n8fb43B6FVfTK5H5QFMVnm6ZZ07a5XPB7hkREUkpsmuZJRLzqqaee+ouufUr/Gixfvvxjvu9/oq5r3m7DWEgXsRhjvE0S+o7jnFDX9dFxHN8Wx/FXEXFD5wYjopmYmGBjY2NTRPSVNE1/WBTFRxFxleu6YVVVe4yR4SG7UZqmN0spP6K1BmPMgoXVGEPtylczxi7xff+uboBTX2maftBxnLu01l7TNGRreJdUookQkdqxGZUx5m+UUlePjo5+v7Ooq1evHi72D9M0/X3G2EW+7/9mURRgjJmzRFOXTHrGOIH2g+ybZdlnpZTvUUpBeyiaLcAbYFzXxaIoboui6ApEzNuFaXPyaGZm5
+i1CiIeklONVVVlIly6whjHGXNeFqqp+TkRrBoPBt7puk313uItnkyQ5EhGvEkK8AxFl0zRdix6cU1D7KorieU3TrBZCnCKEYFVVqdaHx4UAKWPMSCl5WZb3RVH0KUScHjr8beI4fg0APOC67iH2LK5VF3O6rot1XacA8KeIeMtgMPjH9n02FDLB1NTUqOu6JxHRuY7jvLCuazLG7Nbjj9sEtf1g42maXuQ4zmlCiP2LotCtpRLzHdI2w/uIEOIc3/d/MXz4e3Z29oWMsS86jvMaC6nV0DMEjDEIggCyLPsJIn7OGPPNKIqeGhpQvdkLrarqyKZprkLEE1zXFXme77ZulNsEtd8Kc2pq6g2O47zPdd1TpJSQZVk3Z6Wrm8T5BKrjOFhV1aOIePbIyMi/PB0+PKNDwwFa63tc132bUkobY5gF1WoL1tU4jsO11pkx5q8YY58OguB7vXMZ1Le0cRzvyzl/DyKe6/v+YWmaNogo94RFxV4A7
+cVx/GYp5Smc8/dyzqHdk5o307Xa0zBQ1/W/c85XBUHwdxMTE+yqq67qt/ccSdP0Nt/3P9C2pOS2SYPV1mSM2VzVVFXV44yxa4Mg+GK7/95/9ja7xXEcH+G67s2c8+PKstwM266Aaox5Cp/l4d9ctAwAMDk5GXqe9xIhxFEA8ApjzKsQ8aC2wmdvi7UTv88Lw/BP2i9pet/FKYribK31FZxzrpTqLClt4yLRcJmZ1eJX774jAJj2jw8AFWPstrqubxofH58Z8j43G7YNGzZEYRieorW+kojGYQe7IA49dwgAT/5/5n8+Abz8DDQAAAAASUVORK5CYII="><span>Trophée Mille</span></div><div id="island"><span id="gt">2:30:00</span><button id="go">▶ Lancer</button><button id="gp" title="Pause compteur 
+général">⏯</button><button id="gr" title="Tout remettre à zéro">↺</button></div></div>
 <main>
 <section class="side lea" id="lea"></section>
 <section class="side leo" id="leo"></section>
@@ -44,47 +79,52 @@ const RAW={
 lea:[
 ["Tailler le lard (cubes pour farce fine, brunoise pour saucière, lanières)",8490,""],
 ["Réaliser la farce fine et passer au tamis",8220,""],
-["Réaliser les ballotines",7800,"Cuisson : 85 °C – 12 min"],
-["Sorbet Ratafia + éplucher les poires pour mettre à infuser + cylindres de poire marinés dans le ratafia, miel et jus sudachi, gingembre",7200,"Cuisson farce fine"],
-["Mixer le boudin noir cuit vapeur pour le bonbon",6900,"Lancer huile verte – cuisson 70 °C – 10 min"],
-["Rouler les bandes de lard",6450,""],
-["Terminer le sorbet avec le Stab 2000, le miel et le sucre et ajouter le Ratafia en fin de préparation",6120,"47 g DE MIEL"],
-["Réaliser le parfait au miel + mettre à infuser le miel et le pollen dans 70 g de crème",5400,""],
-["Brunoise de courge + 35 copeaux pickles (emporte-pièce n°2) et mettre en pickles",4380,""],
-["Blanchir les épinards",4170,""],
-["Larder les carrés de cochon",3750,""],
-["Monter les bonbons",3150,""],
-["Montage des baklavas",2730,""],
-["Praliné de courge + turbiner le sorbet 20’",2280,""],
-["Mettre en chauffe la purée + réaliser les gratons",1980,""],
-["Démouler les baklavas",1710,""],
-["Cuisson brunoise de courge",1500,""],
-["Monter les tartelettes et finir les bonbons",1110,""],
-["Dresser les bonbons",870,""],
+["Réaliser les ballotines – cuisson : 85 °C – 12 min",7800,"Cuisson farce fine"],
+["Sorbet Ratafia + éplucher les poires pour récupérer la pectine · cylindres de poire pochés dans beurre + miel + gingembre et ratafia",7200,"Cuisson farce fine"],
+["Mixer le boudin noir cuit vapeur pour le bonbon",6840,""],
+["Rouler les bandes de lard",6360,""],
+["Terminer le sorbet avec le Stab 2000, le miel et le sucre et ajouter le Ratafia en fin de préparation",6000,"47 g DE MIEL"],
+["Réaliser le parfait au miel + mettre à infuser le miel et le pollen dans 70 g de crème",5220,""],
+["Réaliser la brunoise de courge + 35 copeaux pickles et mettre en pickles",4320,""],
+["Blanchir les épinards",4020,""],
+["Larder les carrés de cochon",3540,""],
+["Monter les bonbons",3180,""],
+["Praliné de courge + turbiner le sorbet 20’",2700,""],
+["Montage des baklavas",2220,""],
+["Cuire les gratons et la brunoise de courge",1740,""],
+["Démouler les baklavas",1380,""],
+["Monter les tartelettes et finir les bonbons",1080,""],
+["Dresser les bonbons",840,""],
+["Coup de propre avant le dressage + mettre la nappe",660,""],
 ["Dressage + envoi",0,"Poste : réorganiser, nettoyer, préparer le dessert · Mixer parures de poire (pectine) · Détailler le parfait miel en tubes · Terminer la pectine · Détailler la gelée Ratafia en cubes"]],
 leo:[
-["Habiller le carré de cochon de lait (aponévreuse) + fumer aux herbes. Garder 50 g de chair du filet pour la farce fine. Détailler en cubes les os pour les parures + poitrine + pied",8520,"Vin rouge à réduire (miroir) · fondre le beurre · appareil à pickles"],
-["Lancer le jus en cuisson (colorer les carcasses, dégraisser le beurre, ajouter la GA, flamber cognac, singer, mouiller à hauteur)",8220,"Contrôler le jus + fumage carré"],
-["Courge bleue : rôtir au four pour purée avec aromates, beurre + huile",7740,""],
-["Pâte sablée marjolaine : étaler entre papier sulfurisé, mettre en cellule, détailler en forme de quenelle",7050,"Courge bleue (purée et sphères) 150 °C · tuile dessert 150 °C 9 min · tuile plat 9 min · tartelettes 150 °C 12 min"],
-["Réaliser les 2 appareils à tuile et étaler sur moule graissé · tartelettes bricks (emporte-pièce n°9) entre les deux moules beurrés",6840,""],
-["Réaliser l’huile de tagète",6660,"Sablé : 160 °C – 18 min"],
-["Duxelle de girolles + concasser les noisettes, zester le citron",5520,""],
-["Jus de passion",5340,""],
-["Gel Ratafia : 50 g ratafia + 1 feuille gélatine",4800,""],
-["Purée de courge : mixer au beurre, jus passion, sel, piment d’espelette",4380,""],
-["Eau de courge, passer au chinois · réduire le jus · kappa avec 1,5 g et 100 g de jus",3870,""],
-["Eau de courge réduite et kappa",3750,"Mettre pépins de courge à torréfier"],
-["Mettre le poste baklava en place",3150,""],
-["Montage des baklavas",2670,"Cuisson baklava : 150 °C – ventil 3 – 14 min"],
-["Marquer le carré en cuisson",2160,"Cuisson du carré : 9 min – 59 °C à cœur"],
-["Sphériser à la kappa la purée de courge + pickles de courge à enrouler",1770,""],
-["Manchonner le carré et enlever la couenne",1500,""],
-["Badigeonner de moutarde et plaquer la brunoise",960,""],
+["Habiller le carré de cochon de lait (aponévreuse) + fumer aux herbes. Garder 50 g de chair du filet pour la farce fine. Détailler en cubes les os pour les parures + poitrine + pied",8400,"Vin rouge à réduire (miroir) · fondre le beurre · appareil à pickles"],
+["Lancer le jus en cuisson (colorer les carcasses, dégraisser le beurre, ajouter la GA, flamber cognac, singer, mouiller à hauteur)",8040,"Contrôler le jus + fumage carré"],
+["Courge bleue : rôtir au four pour purée avec aromates, beurre + huile · préparer la courge pour brunoise",7560,"Contrôler le jus + fumage carré"],
+["Réaliser la pâte sablée marjolaine · étaler entre papier sulfurisé et mettre en cellule",7020,"Courge bleue pour purée 150 °C · tuile dessert 150 °C 12 min · tuile plat 150 °C 12 min · tartelettes 150 °C 14 min"],
+["Réaliser les 2 appareils à tuile et étaler sur moule graissé",6780,"Courge bleue pour purée 150 °C · tuile dessert 150 °C 12 min · tuile plat 150 °C 12 min · tartelettes 150 °C 14 min"],
+["Détailler en forme de quenelle",6660,"Sablé : 160 °C – 18 min"],
+["Réaliser la duxelle de girolles + concasser les noisettes, zester le citron",5760,"Sablé : 160 °C – 18 min"],
+["Jus de passion",5580,""],
+["Réaliser le gel Ratafia : 50 g ratafia + 1 feuille gélatine",5040,""],
+["Réaliser la purée de courge : mixer au beurre, jus passion, sel, piment d’espelette",4440,""],
+["Tailler la brunoise de courge",4320,""],
+["Passer la courge à la centrifugeuse",3900,""],
+["Mettre les pépins à torréfier",3780,""],
+["Larder les carrés",3540,""],
+["Mettre le poste baklava en place",3000,"Cuisson baklava : 150 °C – ventil 3 – 14 min"],
+["Marquer les carrés en cuisson",2640,"Cuisson baklava : 150 °C – ventil 3 – 14 min"],
+["Montage des baklavas",2220,"Cuisson du carré : 9 min – 53 °C à cœur"],
+["Pickles de courge à enrouler",1920,""],
+["Manchonner le carré et enlever la couenne",1440,""],
+["Badigeonner de moutarde et plaquer la chapelle",1140,""],
+["Rectifier la sauce",840,""],
+["Coup de propre avant le dressage + mettre la nappe",660,""],
 ["Dressage + envoi",0,"Poste : réorganiser, nettoyer, préparer le dessert · Monter la crème pollen · Étaler le sorbet · Démouler le parfait miel · Mettre en poche miel, condiment poire, crème montée"]]
 };
 const fmt=(s,h)=>{s=Math.max(0,Math.ceil(s));const H=Math.floor(s/3600),M=Math.floor(s%3600/60),S=s%60;return (h||H?H+":"+String(M).padStart(2,"0"):M)+":"+String(S).padStart(2,"0")};
 let ac;function beep(){try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type="sine";o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.2,t);g.gain.setValueAtTime(.2,t+3.8);g.gain.linearRampToValueAtTime(0,t+4);for(let i=0;i<8;i++)o.frequency.setValueAtTime(i%2?660:880,t+i*.5);o.start(t);o.stop(t+4)}catch(e){}}
+function fitBox(e){e.style.fontSize="";let f=parseFloat(getComputedStyle(e).fontSize);while(e.scrollHeight>e.clientHeight+1&&f>9){f-=1;e.style.fontSize=f+"px"}}
 function fit(t){t.style.fontSize="";const s=t.firstChild;let f=parseFloat(getComputedStyle(t).fontSize);while(s.offsetHeight>t.clientHeight+1&&f>10){f-=1;t.style.fontSize=f+"px"}}
 const G={rem:9000,run:false};
 const S={};
@@ -99,7 +139,8 @@ q(".note").textContent=c.n;
 const tm=q(".time");tm.textContent=fmt(p.rem);tm.classList.toggle("low",p.rem<=10&&c.d>0);
 q(".bar i").style.width=(c.d?100*(1-p.rem/c.d):100)+"%";
 q('[data-a="play"]').textContent=p.run?"⏸":"▶";
-q(".next").innerHTML=nx?`<b>Étape suivante · ${fmt(nx.d)}</b>${nx.t}`:`<b>Dernière étape</b>Fin du concours`}
+q(".next").innerHTML=nx?`<b>Étape suivante · ${fmt(nx.d)}</b>${nx.t}`:`<b>Dernière étape</b>Fin du concours`;
+if(el.dataset.f!==String(p.i)){el.dataset.f=p.i;fitBox(q(".note"));fitBox(q(".next"))}}
 function act(k,a){const p=S[k];
 if(a==="play")p.run=!p.run;
 if(a==="rst")p.rem=p.t[p.i].d;
@@ -118,8 +159,10 @@ draw(k)}},200);
 document.getElementById("go").onclick=()=>{try{ac=ac||new AudioContext()}catch(e){}G.run=true;for(const k in S)S[k].run=true;try{navigator.wakeLock&&navigator.wakeLock.request("screen")}catch(e){}};
 document.getElementById("gp").onclick=()=>{G.run=!G.run};
 document.getElementById("gr").onclick=()=>{G.rem=9000;G.run=false;for(const k in S){const p=S[k];p.i=0;p.rem=p.t[0].d;p.run=false}};
+function fitBar(){const b=document.getElementById("bar");let f=Math.min(innerWidth*.04,innerHeight*.075,72);b.style.setProperty("--big",f+"px");while(b.scrollWidth>b.clientWidth+1&&f>12){f-=1;b.style.setProperty("--big",f+"px")}}
+fitBar();
 for(const k in S)draw(k);
-addEventListener("resize",()=>{for(const k in S){S[k].el.dataset.k="";draw(k)}});
+addEventListener("resize",()=>{fitBar();for(const k in S){S[k].el.dataset.k="";S[k].el.dataset.f="";draw(k)}});
 </script>
 </body>
 </html>
