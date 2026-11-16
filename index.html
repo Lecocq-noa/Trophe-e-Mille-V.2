@@ -22,6 +22,8 @@ main{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px m
 .side.leo{--c:var(--blue)}
 .head{display:flex;justify-content:space-between;align-items:center;color:var(--c);font-weight:800;font-size:clamp(18px,3vw,28px);letter-spacing:2px}
 .head small{color:var(--mut);font-weight:600;font-size:14px;letter-spacing:0}
+.gap{width:min(92px,12vh);min-width:58px;aspect-ratio:1;border:2px solid currentColor;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:min(20px,3vh);font-weight:800;letter-spacing:0;line-height:1.1;white-space:nowrap;background:#00000066;font-variant-numeric:tabular-nums}
+.gap i{font-style:normal;font-size:.5em;font-weight:700;text-transform:uppercase;letter-spacing:1px}
 .title{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(16px,2.6vw,26px);font-weight:600;line-height:1.25;padding:8px 4px;overflow:auto}
 .note{background:color-mix(in srgb,var(--c) 28%,transparent);border:1px solid var(--c);border-radius:12px;padding:6px 10px;text-align:center;font-size:clamp(12px,min(1.8vw,2.4vh),18px);margin-bottom:6px;max-height:17vh;overflow:hidden;flex:none}
 .note:empty{display:none}
@@ -130,10 +132,12 @@ const G={rem:9000,run:false};
 const S={};
 for(const k of["lea","leo"]){let s=9000;const t=RAW[k].map(([x,e,n])=>{const o={t:x,n,d:s-e};s=e;return o});S[k]={t,i:0,rem:t[0].d,run:false,el:document.getElementById(k),name:k==="lea"?"LÉA":"LÉO"}}
 function draw(k){const p=S[k],c=p.t[p.i],nx=p.t[p.i+1],el=p.el;
-if(!el.dataset.ok){el.dataset.ok=1;el.innerHTML=`<div class="head"><span>${p.name}</span><small></small></div><div class="title"></div><div class="note"></div><div class="time"></div><div class="bar"><i></i></div><div class="ctl"><button data-a="prev" title="Objectif précédent">⏮</button><button data-a="play" class="p"></button><button data-a="rst" title="Recommencer cette étape">↺</button><button data-a="next" title="Objectif suivant">⏭</button></div><div class="next"></div>`;
+if(!el.dataset.ok){el.dataset.ok=1;el.innerHTML=`<div class="head"><span>${p.name}</span><div class="gap"><b></b><i></i></div><small></small></div><div class="title"></div><div class="note"></div><div class="time"></div><div class="bar"><i></i></div><div class="ctl"><button data-a="prev" title="Objectif précédent">⏮</button><button data-a="play" class="p"></button><button data-a="rst" title="Recommencer cette étape">↺</button><button data-a="next" title="Objectif suivant">⏭</button></div><div class="next"></div>`;
 el.onclick=e=>{const a=e.target.closest("button")?.dataset.a;if(a)act(k,a)}}
 const q=s=>el.querySelector(s);
 q("small").textContent=`Étape ${p.i+1}/${p.t.length}`;
+if(!p.suf){let a=0;p.suf=p.t.map(()=>0);for(let j=p.t.length-1;j>=0;j--){p.suf[j]=a;a+=p.t[j].d}}
+const df=Math.round(G.rem-(p.rem+p.suf[p.i])),g=q(".gap");g.style.color=df>0?"#3ddc84":df<0?"#ff5a5a":"#9a9aab";g.firstChild.textContent=(df>0?"+":df<0?"−":"")+fmt(Math.abs(df));g.lastChild.textContent=df>0?"avance":df<0?"retard":"pile";
 if(el.dataset.k!==String(p.i)){el.dataset.k=p.i;const T=q(".title");T.innerHTML="<span></span>";T.firstChild.textContent=c.t;fit(T)}
 q(".note").textContent=c.n;
 const tm=q(".time");tm.textContent=fmt(p.rem);tm.classList.toggle("low",p.rem<=10&&c.d>0);
