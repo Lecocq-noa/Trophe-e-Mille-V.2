@@ -14,6 +14,8 @@ body{height:100dvh;background:var(--bg);color:var(--fg);font-family:-apple-syste
 #ttl{display:flex;align-items:center;gap:.3em;justify-self:start;font-size:var(--big);font-weight:800;color:#fff;white-space:nowrap}
 #ttl img{height:1.15em;width:auto;flex:none}
 #dt{justify-self:end;font-size:var(--big);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+#ph{font-size:calc(var(--big)*.6);font-weight:800;color:#8fd3ff;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+#ph:empty{display:none}
 #gt{font-size:var(--big);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:1px}
 #island button{width:min(64px,8vh);height:min(64px,8vh);min-width:40px;min-height:40px;border-radius:50%;border:0;background:#22222c;color:var(--fg);font-size:22px;cursor:pointer}
 #island #go{width:auto;padding:0 22px;border-radius:32px;background:#fff;color:#000;font-weight:700;font-size:20px}
@@ -70,8 +72,8 @@ FOXYoza24ZZj4gfDsPwkd5q3KX/R9M0vUEIcbrWmojIHlubf/eRGGPo+z6UZflPWusbwzD8er/1Swvt5
 QGGGkYvRncXAMxgMMC6rtdGUXQdIla95tDdAKfXcM7vcl33gKqqjIV0QbrCvCxLzTnfXwixmogezrLsbRMTE930AtYPcUZHRx8bDAYXKaXOrKrqUcYYSinnTWYYiShI0/Ry13UvrqrKLNZzlO3h7yYIApll2beJ6PQoiiaHMrwmSZIjAeArvu+/tCgKW3W08O+74ZwzIQTUdZ0ZY9YAwL0jIyMb+43V+jFsnucHEdF5xpgzHcfxmqbZXGyx1ywqIuaI+PdlWa53HIcDwKI804eI2vM8mWXZPzDGzm4h5V3I2sL6HABY47ruS4uiIAvporjvTGtNbc3wQAhxrRDiy1NTU6/vTZ/ru8IQBMGvgiC4DAA+UNf1DzjnIKXcq21LGQCAUup7nPO/RERtjFl0bl47wIkXRfHPiHhO71yp7mKU6enpsTiOV3PO366UskdhFpkrjIiotQattfZ9/3jf9x9KkuScLMtW9GDt1wyXURR9XUq5qmma+
 4hoqjNke8MXZkSEY2Nj04h4b1mWvwyCYFE1PCYicF2XlWX5K0S8YjAY/Kh/rhQAaN26dZ4Q4gLP8z4IANCOhrFx6eKElidJojnnz2WMXW+M+WySJMcAAB/uMzwxMcE8z/uZMeaCuq4vaJrm+57n8fb43B6FVfTK5H5QFMVnm6ZZ07a5XPB7hkREUkpsmuZJRLzqqaee+ouufUr/Gixfvvxjvu9/oq5r3m7DWEgXsRhjvE0S+o7jnFDX9dFxHN8Wx/FXEXFD5wYjopmYmGBjY2NTRPSVNE1/WBTFRxFxleu6YVVVe4yR4SG7UZqmN0spP6K1BmPMgoXVGEPtylczxi7xff+uboBTX2maftBxnLu01l7TNGRreJdUookQkdqxGZUx5m+UUlePjo5+v7Ooq1evHi72D9M0/X3G2EW+7/9mURRgjJmzRFOXTHrGOIH2g+ybZdlnpZTvUUpBeyiaLcAbYFzXxaIoboui6ApEzNuFaXPyaGZm5
 i1CiIeklONVVVlIly6whjHGXNeFqqp+TkRrBoPBt7puk313uItnkyQ5EhGvEkK8AxFl0zRdix6cU1D7KorieU3TrBZCnCKEYFVVqdaHx4UAKWPMSCl5WZb3RVH0KUScHjr8beI4fg0APOC67iH2LK5VF3O6rot1XacA8KeIeMtgMPjH9n02FDLB1NTUqOu6JxHRuY7jvLCuazLG7Nbjj9sEtf1g42maXuQ4zmlCiP2LotCtpRLzHdI2w/uIEOIc3/d/MXz4e3Z29oWMsS86jvMaC6nV0DMEjDEIggCyLPsJIn7OGPPNKIqeGhpQvdkLrarqyKZprkLEE1zXFXme77ZulNsEtd8Kc2pq6g2O47zPdd1TpJSQZVk3Z6Wrm8T5BKrjOFhV1aOIePbIyMi/PB0+PKNDwwFa63tc132bUkobY5gF1WoL1tU4jsO11pkx5q8YY58OguB7vXMZ1Le0cRzvyzl/DyKe6/v+YWmaNogo94RFxV4A7
-cVx/GYp5Smc8/dyzqHdk5o307Xa0zBQ1/W/c85XBUHwdxMTE+yqq67qt/ccSdP0Nt/3P9C2pOS2SYPV1mSM2VzVVFXV44yxa4Mg+GK7/95/9ja7xXEcH+G67s2c8+PKstwM266Aaox5Cp/l4d9ctAwAMDk5GXqe9xIhxFEA8ApjzKsQ8aC2wmdvi7UTv88Lw/BP2i9pet/FKYribK31FZxzrpTqLClt4yLRcJmZ1eJX774jAJj2jw8AFWPstrqubxofH58Z8j43G7YNGzZEYRieorW+kojGYQe7IA49dwgAT/5/5n8+Abz8DDQAAAAASUVORK5CYII="><span>Trophée Mille</span></div><div id="island"><span id="gt">2:30:00</span><button id="go">▶ Lancer</button><button id="gp" title="Pause compteur 
-général">⏯</button><button id="gr" title="Tout remettre à zéro">↺</button></div></div>
+cVx/GYp5Smc8/dyzqHdk5o307Xa0zBQ1/W/c85XBUHwdxMTE+yqq67qt/ccSdP0Nt/3P9C2pOS2SYPV1mSM2VzVVFXV44yxa4Mg+GK7/95/9ja7xXEcH+G67s2c8+PKstwM266Aaox5Cp/l4d9ctAwAMDk5GXqe9xIhxFEA8ApjzKsQ8aC2wmdvi7UTv88Lw/BP2i9pet/FKYribK31FZxzrpTqLClt4yLRcJmZ1eJX774jAJj2jw8AFWPstrqubxofH58Z8j43G7YNGzZEYRieorW+kojGYQe7IA49dwgAT/5/5n8+Abz8DDQAAAAASUVORK5CYII="><span>Trophée Mille</span></div><div id="island"><button id="pl" title="Prod. chaud">‹</button><span id="gt">2:30:00</span><span id="ph"></span><button id="pr" 
+title="Prod. froid">›</button><button id="go">▶ Lancer</button><button id="gp" title="Pause compteur général">⏯</button><button id="gr" title="Réinitialiser cette prod">↺</button></div></div>
 <main>
 <section class="side lea" id="lea"></section>
 <section class="side leo" id="leo"></section>
@@ -124,6 +126,31 @@ leo:[
 ["Coup de propre avant le dressage + mettre la nappe",660,""],
 ["Dressage + envoi",0,"Poste : réorganiser, nettoyer, préparer le dessert · Monter la crème pollen · Étaler le sorbet · Démouler le parfait miel · Mettre en poche miel, condiment poire, crème montée"]]
 };
+const RAW2={
+lea:[
+["Coup de propre",1920,""],
+["Infusion crème pollen",1440,""],
+["Démouler le parfait miel",1140,""],
+["Pocher les vitraux",960,""],
+["Démouler les glaces",780,""],
+["Dresser les parfaits",660,""],
+["Dresser les poires dans les baklavas",540,""],
+["Poser la gelée de ratafia sur les parfaits",420,""],
+["Poser le pollen sur les parfaits",300,""],
+["Dressage + envoi",0,""]],
+leo:[
+["Coup de propre",1920,""],
+["Monter la crème pollen",1320,""],
+["Mettre du miel en petite pipette",1260,""],
+["Tailler la gelée Ratafia",1080,""],
+["Préparer les Alysses bleues",960,""],
+["Dresser les Baklawas",720,""],
+["Mettre une pointe de crème dans les Baklawas",600,""],
+["Dresser le gel poire sur la crème pollen",480,""],
+["Dresser la crème pollen dans les Baklawas",360,""],
+["Dresser les Alysses bleues",300,""],
+["Dressage + envoi",0,""]]
+};
 const fmt=(s,h)=>{s=Math.max(0,Math.ceil(s));const H=Math.floor(s/3600),M=Math.floor(s%3600/60),S=s%60;return (h||H?H+":"+String(M).padStart(2,"0"):M)+":"+String(S).padStart(2,"0")};
 let ac;function tone(f,t0,d,type,v){const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(v,t0+.01);g.gain.exponentialRampToValueAtTime(.001,t0+d);o.start(t0);o.stop(t0+d+.02)}
 function beep(k){try{ac=ac||new AudioContext();const t=ac.currentTime;if(k==="lea"){[2093,3136,4186].forEach((f,i)=>tone(f,t,2,"sine",.16/(i+1)));for(let r=1;r<8;r++)tone(2093,t+r*.09,1.6-r*.12,"sine",.07)}else{tone(1200,t,.25,"square",.12);tone(1200,t+.4,.25,"square",.12)}}catch(e){}}
@@ -131,7 +158,11 @@ function fitBox(e){e.style.fontSize="";let f=parseFloat(getComputedStyle(e).font
 function fit(t){t.style.fontSize="";const s=t.firstChild;let f=parseFloat(getComputedStyle(t).fontSize);while(s.offsetHeight>t.clientHeight+1&&f>10){f-=1;t.style.fontSize=f+"px"}}
 const G={rem:9000,run:false};
 const S={};
-for(const k of["lea","leo"]){let s=9000;const t=RAW[k].map(([x,e,n])=>{const o={t:x,n,d:s-e};s=e;return o});S[k]={t,i:0,rem:t[0].d,run:false,el:document.getElementById(k),name:k==="lea"?"LÉA":"LÉO"}}
+const mk=(a,s0)=>{let s=s0;return a.map(([x,e,n])=>{const o={t:x,n,d:s-e};s=e;return o})};let PH=1;
+for(const k of["lea","leo"]){const t=mk(RAW[k],9000);S[k]={t,i:0,rem:t[0].d,run:false,el:document.getElementById(k),name:k==="lea"?"LÉA":"LÉO"}}
+let SAVE={};
+function goPhase(n,run){if(n===PH)return;SAVE[PH]={g:G.rem,s:Object.fromEntries(Object.keys(S).map(k=>[k,{i:S[k].i,rem:S[k].rem}]))};PH=n;const sv=SAVE[n];G.rem=sv?sv.g:(n===1?9000:2100);G.run=!!run;for(const k in S){const p=S[k];p.t=mk(n===1?RAW[k]:RAW2[k],n===1?9000:2100);p.i=sv?sv.s[k].i:0;p.rem=sv?sv.s[k].rem:p.t[0].d;p.run=!!run;p.suf=null;p.el.dataset.k="";p.el.dataset.f=""}document.getElementById("ph").textContent=n===2?"Prod. froid":"";fitBar()}
+document.getElementById("pl").onclick=()=>goPhase(1,G.run);document.getElementById("pr").onclick=()=>goPhase(2,G.run);
 function draw(k){const p=S[k],c=p.t[p.i],nx=p.t[p.i+1],el=p.el;
 if(!el.dataset.ok){el.dataset.ok=1;el.innerHTML=`<div class="head"><span>${p.name}</span><div class="gap"><b></b><i></i></div><small></small></div><div class="title"></div><div class="note"></div><div class="time"></div><div class="bar"><i></i></div><div class="ctl"><button data-a="prev" title="Objectif précédent">⏮</button><button data-a="play" class="p"></button><button data-a="rst" title="Recommencer cette étape">↺</button><button data-a="next" title="Objectif suivant">⏭</button></div><div class="next"></div>`;
 el.onclick=e=>{const a=e.target.closest("button")?.dataset.a;if(a)act(k,a)}}
@@ -154,8 +185,8 @@ if(a==="prev"&&p.i>0){p.i--;p.rem=p.t[p.i].d}
 draw(k)}
 let last=Date.now();
 setInterval(()=>{const n=Date.now(),dt=(n-last)/1000;last=n;
-if(G.run){G.rem=Math.max(0,G.rem-dt);if(!G.rem)G.run=false}
-document.getElementById("gt").textContent=fmt(G.rem,1);
+if(G.run){G.rem=Math.max(0,G.rem-dt);if(!G.rem){if(PH===1){goPhase(2,true);beep("lea")}else G.run=false}}
+document.getElementById("gt").textContent=fmt(G.rem,PH===1);document.getElementById("pl").style.opacity=PH===1?.3:1;document.getElementById("pr").style.opacity=PH===2?.3:1;
 for(const k in S){const p=S[k];if(p.run){p.rem-=dt;let ch=0;
 while(p.rem<=0&&p.i<p.t.length-1){p.i++;p.rem+=p.t[p.i].d;ch=1}
 if(p.rem<=0){p.rem=0;p.run=false;ch=1}
@@ -163,7 +194,7 @@ if(ch)beep(k)}
 draw(k)}},200);
 document.getElementById("go").onclick=()=>{try{ac=ac||new AudioContext()}catch(e){}G.run=true;for(const k in S)S[k].run=true;try{navigator.wakeLock&&navigator.wakeLock.request("screen")}catch(e){}};
 document.getElementById("gp").onclick=()=>{G.run=!G.run};
-document.getElementById("gr").onclick=()=>{G.rem=9000;G.run=false;for(const k in S){const p=S[k];p.i=0;p.rem=p.t[0].d;p.run=false}};
+document.getElementById("gr").onclick=()=>{delete SAVE[PH];const s0=PH===1?9000:2100,R=PH===1?RAW:RAW2;G.rem=s0;G.run=false;for(const k in S){const p=S[k];p.t=mk(R[k],s0);p.i=0;p.rem=p.t[0].d;p.run=false;p.suf=null;p.el.dataset.k="";p.el.dataset.f=""}fitBar()};
 function fitBar(){const b=document.getElementById("bar");let f=Math.min(innerWidth*.04,innerHeight*.075,72);b.style.setProperty("--big",f+"px");while(b.scrollWidth>b.clientWidth+1&&f>12){f-=1;b.style.setProperty("--big",f+"px")}}
 fitBar();
 for(const k in S)draw(k);
